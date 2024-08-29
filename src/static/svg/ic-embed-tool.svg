@@ -1,0 +1,19 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3_148)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1 4C0.447715 4 0 4.44772 0 5V21C0 21.5523 0.447716 22 1 22H23C23.5523 22 24 21.5523 24 21V5C24 4.44772 23.5523 4 23 4H1ZM2 4.75001C1.44772 4.75001 1 5.19773 1 5.75001V20.25C1 20.8023 1.44772 21.25 2 21.25H22C22.5523 21.25 23 20.8023 23 20.25V5.75001C23 5.19773 22.5523 4.75001 22 4.75001H2Z" fill="white"/>
+<line y1="-0.5" x2="24" y2="-0.5" transform="matrix(0.999991 0.00416102 -0.00441702 0.99999 0 9.29413)" stroke="white"/>
+<line x1="2.18182" y1="6.67645" x2="4.36364" y2="6.67645" stroke="white"/>
+<line x1="5.45453" y1="6.67645" x2="7.63635" y2="6.67645" stroke="white"/>
+<line x1="8.72729" y1="6.67645" x2="10.9091" y2="6.67645" stroke="white"/>
+<path d="M3.81818 15.6471V18.8235" stroke="white"/>
+<line y1="-0.5" x2="4.36364" y2="-0.5" transform="matrix(-1 0.000565637 -0.000600437 -1 7.63635 18.8235)" stroke="white"/>
+<path d="M11.0239 12.4706L8.72729 14.9226L11.0239 16.7059" stroke="white" stroke-width="0.5"/>
+<path d="M15.1579 16.7059L17.4545 14.2539L15.1579 12.4706" stroke="white" stroke-width="0.5"/>
+<line y1="-0.25" x2="3.68298" y2="-0.25" transform="matrix(-0.249434 0.968392 -0.9718 -0.235805 13.3206 12.4706)" stroke="white" stroke-width="0.5"/>
+</g>
+<defs>
+<clipPath id="clip0_3_148">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>

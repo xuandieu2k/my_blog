@@ -43,7 +43,7 @@ export const CategoryTopbar: FC<CategoryTopbarProps> = (props) => {
                     } transition-all duration-500 ease-in-out overflow-hidden flex flex-col bg-black`}
             >
                 {props.data.map((item, index) => (
-                    <div className="flex flex-col" onClick={moveToPage}>
+                    <div className="flex flex-col" onClick={moveToPage} key={index}>
                         <div className="w-full h-[0.5px] bg-gray-200" />
                         <p key={index} className="p-2 hover:bg-white hover:text-black">
                             {item}

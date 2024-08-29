@@ -6,18 +6,15 @@ import { CategoryItem } from './category-item';
 import { ImageTopicItem } from './image-topic-item';
 import { ChooseCategoriesModal } from './choose-categories-modal';
 import Category from '../../../base/model/category';
-
-const PostEditor: React.FC = () => {
+import Post from '../../../base/model/post';
+import { ChooseTool } from './choose-tools';
+interface PostEditorProps {
+    post: Post,
+    setPost: (post: Post) => void
+}
+const PostEditor: React.FC<PostEditorProps> = ({ post, setPost }) => {
     const [content, setContent] = useState<string>('');
     const [show, setShowModal] = useState<boolean>(false)
-
-    const categories = [
-        new Category({ id: 1, name: 'Đời sống', is_selected: true }),
-        new Category({ id: 2, name: 'Du lịch', is_selected: true }),
-        new Category({ id: 3, name: 'Ẩm thực', is_selected: false }),
-        new Category({ id: 4, name: 'Thiên nhiên', is_selected: false }),
-    ];
-    const [currentCategories, setCurrentCategories] = useState<Category[]>(categories)
 
     const handleContentChange = (value: string) => {
         setContent(value);
@@ -28,27 +25,29 @@ const PostEditor: React.FC = () => {
     }
 
     const onClickRemoveItem = (item: Category) => {
-        const itemCat = currentCategories.find((i) => i.id == item.id)
+        const itemCat = post.categories.find((i) => i.id == item.id)
         if (itemCat) {
             itemCat.is_selected = false
-            const updatedItems = [...currentCategories]
-            setCurrentCategories(updatedItems)
+            const updatedItems = [...post.categories]
+            const updatedPost = { ...post, categories: updatedItems };
+            setPost(updatedPost);
+            // setCurrentCategories(updatedItems)
         }
     }
 
-    const onShowModal = () =>{
+    const onShowModal = () => {
         setShowModal(true)
     }
 
     return (
         <div className="editor-container">
-            <TitleItem />
-            <CategoryItem categories={currentCategories.filter((item) => item.is_selected)} onClickRemoveItem={onClickRemoveItem} onShowModal={onShowModal}/>
-            <ImageTopicItem />
+            <TitleItem post={post} setPost={setPost} />
+            <CategoryItem categories={post.categories.filter((item) => item.is_selected)} onClickRemoveItem={onClickRemoveItem} onShowModal={onShowModal} />
+            <ImageTopicItem post={post} setPost={setPost} />
             {/* <DemoTool /> */}
             <p>{content}</p>
-            <MoveItem />
-            <ChooseCategoriesModal handleClose={onHandleClose} show={show} categories={currentCategories} setCategories={setCurrentCategories} />
+            <MoveItem post={post} setPost={setPost} />
+            <ChooseCategoriesModal handleClose={onHandleClose} show={show} categories={post.categories.slice()} />
         </div>
     );
 };

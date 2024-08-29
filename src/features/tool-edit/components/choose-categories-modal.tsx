@@ -1,32 +1,41 @@
 import { FC, useState } from "react"
 import Category from "../../../base/model/category"
+import ic_check from '../../../static/svg/ic-tick.svg'
+import useWindowSize from "../../../base/hook/use-window-resize"
 interface ChooseCategoriesProps {
     show: boolean,
     handleClose: () => void,
     categories: Category[],
-    setCategories: (categories: Category[]) => void
+    // setCategories: (categories: Category[]) => void
 }
 export const ChooseCategoriesModal: FC<ChooseCategoriesProps> = (props) => {
     const [currentCategories, setCurrentCategories] = useState<Category[]>(props.categories)
+    const screenSize = useWindowSize()
     const onClickItem = (id: number) => {
-
+        const item = currentCategories.find((i) => i.id == id)
+        if (item) {
+            item.is_selected = !item.is_selected
+            const updatedItems = [...currentCategories]
+            setCurrentCategories(updatedItems)
+        }
     }
 
     const onClickSave = () => {
+        // props.setCategories(currentCategories)
         props.handleClose()
     }
 
 
     const renderItemCategory = () => {
         return (
-            <ul className="list-none">
-                {props.categories.map((category) => (
+            <ul className={`${screenSize.screenSize !== 'mobile' ? 'grid grid-cols-2 gap-2' : ''} list-none`}>
+                {currentCategories.map((category) => (
                     <li
                         key={category.id}
-                        className={`p-2 border-b border-gray-200 cursor-pointer ${category.is_selected ? 'bg-blue-500 text-white' : 'hover:bg-gray-100'}`}
+                        className={`p-2 flex border-b border-gray-200 cursor-pointer ${category.is_selected ? 'bg-gray-600 text-white' : 'hover:bg-gray-100'}`}
                         onClick={() => onClickItem(category.id)}
                     >
-                        {category.name}
+                        <p>{category.name}</p> {category.is_selected && <img className="ml-auto h4 w-4" src={ic_check} />}
                     </li>
                 ))}
             </ul>
@@ -43,17 +52,20 @@ export const ChooseCategoriesModal: FC<ChooseCategoriesProps> = (props) => {
                         <span>&times;</span>
                     </button>
                 </div>
+                <div className="px-4 py-2">
+                    <input className="w-full border-2 p-2" placeholder="Nhập từ khóa cần tìm" />
+                </div>
                 <div className="p-4">
                     {renderItemCategory()}
                 </div>
-                <div className="p-4 border-t border-gray-200 flex justify-end">
+                {/* <div className="p-4 border-t border-gray-200 flex justify-end">
                     <button type="button" className="bg-yellow-400 text-white py-2 px-4 rounded hover:bg-yellow-500" onClick={props.handleClose}>
                         Đóng
                     </button>
                     <button type="button" className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 ml-2" onClick={onClickSave}>
                         Lưu
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

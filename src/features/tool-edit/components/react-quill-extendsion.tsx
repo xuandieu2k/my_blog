@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import ReactQuill, { ReactQuillProps } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+interface ReactQuillExtendsionProps {
+    props: ReactQuillProps,
+    onDataChange: (value: string) => void
+}
+export const ReactQuillExtendsion: FC<ReactQuillExtendsionProps> = ({ props, onDataChange }) => {
+    const [content, setContent] = useState(props.value);
+    useEffect(() => {
+        onDataChange(String(content))
+    }, [content])
 
-export const ReactQuillExtendsion = (props: ReactQuillProps) => {
-    const [content, setContent] = useState('');
-    useEffect(() =>{
-        console.log({content})
-    },[content])
-
-    // Cấu hình các module cho react-quill
     const modules = {
         toolbar: [
             [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
@@ -22,7 +24,6 @@ export const ReactQuillExtendsion = (props: ReactQuillProps) => {
         ],
     };
 
-    // Các định dạng được sử dụng trong editor
     const formats = [
         'header', 'font', 'size',
         'bold', 'italic', 'underline', 'strike', 'blockquote',

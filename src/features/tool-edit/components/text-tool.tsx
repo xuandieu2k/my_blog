@@ -1,18 +1,22 @@
 import { FC, useState } from "react";
-import ReactQuill from "react-quill";
 import { ReactQuillExtendsion } from "./react-quill-extendsion";
+import ContentPost from "../../../base/model/content-post";
 interface TextToolProps {
-    value?: string
+    contentPost: ContentPost,
+    position: number,
+    onChangeData: (contentPost: ContentPost, position: number) => void
 }
 export const TextTool: FC<TextToolProps> = (props) => {
-    const [content, setContent] = useState<string>(String(props.value) == 'undefined' ? '' : String(props.value));
+    const [content, setContent] = useState<string>(props.contentPost.content);
 
     const handleContentChange = (value: string) => {
         setContent(value);
+        props.contentPost.content = value
+        props.onChangeData(props.contentPost, props.position)
     };
     return (
         <div>
-            <ReactQuillExtendsion value={content} onChange={handleContentChange} />
+            <ReactQuillExtendsion props={{ value: content }} onDataChange={handleContentChange} />
         </div>
     );
 }

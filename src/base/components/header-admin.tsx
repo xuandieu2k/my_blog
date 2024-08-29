@@ -7,10 +7,9 @@ import i18n from "../../i18n";
 import LanguageModal from "./language-modal";
 import { TAB_LAYOUT } from "../constants/app-constants";
 
-export const Header: FC<{}> = () => {
+export const HeaderAdmin: FC<{}> = () => {
     const [showTopbar, setShowTopbar] = useState<boolean>(false)
     const [showModal, setShowModal] = useState(false)
-    const [tabActive, setTabActive] = useState<number>(0)
     const onClickSearch = () => {
 
     }
@@ -21,14 +20,8 @@ export const Header: FC<{}> = () => {
 
     const onClose = (tab?: number) => {
         setShowTopbar(false)
-        if (tab){
-            if(tab === TAB_LAYOUT.LANGUAGE){
-                setShowModal(true)
-            }
-            setTabActive(tab)
-           
-        }
-            
+        if(tab && tab === TAB_LAYOUT.LANGUAGE)
+            setShowModal(true)
     }
 
 
@@ -45,7 +38,7 @@ export const Header: FC<{}> = () => {
         <>
             <header className="bg-black text-white p-4 shadow-md">
                 <div className="container mx-auto flex flex-row justify-between items-center">
-                    <h1 className="text-2xl font-bold flex-1">{tabActive === TAB_LAYOUT.ADMIN?'Admin':'My Blog'}</h1>
+                    <h1 className="text-2xl font-bold flex-1">Admin</h1>
                     <div className="flex items-center ml-auto">
                         <ButtonIcon src={icon_search} className="h-6 w-6" onClick={onClickSearch} />
                         <ButtonIcon src={icon_menu} className="h-6 w-6 ml-4" onClick={onClickMenu} />

@@ -30,7 +30,7 @@ export const TopBar: FC<TopBarProps> = (props) => {
 
     const onClickMenu = () => {
         if (props.onClickClose)
-            props.onClickClose()
+            props.onClickClose(activeTab)
     }
 
     const onClickTab = () => {
@@ -46,7 +46,7 @@ export const TopBar: FC<TopBarProps> = (props) => {
         >
             <div className="m-4">
                 <div className="flex">
-                    <h1 className="text-2xl font-bold flex-1">My Blog</h1>
+                    <h1 className="text-2xl font-bold flex-1">{activeTab === TAB_LAYOUT.ADMIN ? 'Admin' : 'My Blog'}</h1>
                     <div className="flex items-center ml-auto">
                         <ButtonIcon src={icon_menu} className="h-6 w-6" onClick={onClickMenu} />
                     </div>
@@ -67,6 +67,7 @@ export const TopBar: FC<TopBarProps> = (props) => {
                     <CategoryTitle setActiveTab={onActiveTabChange} tab={TAB_LAYOUT.DETAIL_POST} className={setClassForTab(TAB_LAYOUT.DETAIL_POST)} name={t('outstanding')} to={ModuleConstants.DETAIL_POST} onClick={props.onClickClose} />
                     <CategoryTitle setActiveTab={onActiveTabChange} tab={TAB_LAYOUT.ABOUT_US} className={setClassForTab(TAB_LAYOUT.ABOUT_US)} name={t('about_us')} to={ModuleConstants.ABOUT_US} onClick={props.onClickClose} />
                     <CategoryTitle setActiveTab={onActiveTabChange} tab={TAB_LAYOUT.LANGUAGE} className="" name={t('language')} icon={getLanguage(i18n.language)} onClick={onClickTab} />
+                    <CategoryTitle setActiveTab={onActiveTabChange} tab={TAB_LAYOUT.ADMIN} className={setClassForTab(TAB_LAYOUT.ABOUT_US)} to={ModuleConstants.ADMIN} name={t('admin')} onClick={props.onClickClose} />
                 </div>
             </div>
         </div >

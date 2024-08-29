@@ -19,4 +19,5 @@ export const TYPE_CONTENT_COMPONENT = {
     TEXT: 1,
     TEXT_IMAGE: 2,
     IMAGE_TEXT: 3,
+    EMBED_CODE: 4
 }
